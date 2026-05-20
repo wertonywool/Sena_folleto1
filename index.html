@@ -3,52 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sena Folleto - Josue Bermudez</title>
+    <title>Vocaloid Digital Brochure | Josue Bermudez</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div id="bg-animation"></div>
-    
-    <main id="container">
+<body class="loading">
+    <!-- Visual Background Layers -->
+    <div class="cyber-bg">
+        <div class="grid-3d"></div>
+        <div class="particles" id="particles"></div>
+        <div class="glow-radial" id="cursor-glow"></div>
+        <div class="scanlines"></div>
+    </div>
+
+    <!-- HUD Overlay Elements -->
+    <div class="hud-layer">
+        <div class="hud-top">
+            <div class="hud-line"></div>
+            <div class="hud-stats">
+                <span>SYSTEM: ONLINE</span>
+                <span class="pulse">SYNC: 100%</span>
+                <span id="clock">00:00:00</span>
+            </div>
+        </div>
+        <div class="hud-side left">
+            <div class="hud-vert-text">PROJECT_SENA // VOL_01</div>
+            <div class="hud-decor-box"></div>
+        </div>
+        <div class="hud-side right">
+            <div class="hud-vert-text">JOSUE_BERMUDEZ // BOTACHE</div>
+            <div class="hud-page-indicator">PAGE <span id="current-page-num">00</span></div>
+        </div>
+        <div class="hud-bottom">
+            <div class="hud-line"></div>
+            <div class="hud-tags">
+                <span>VOCALOID_TYPE: MIKU</span>
+                <span>STATUS: OPERATIONAL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main id="app">
         <!-- Intro Section -->
-        <section id="intro" class="active">
-            <h1 class="glitch" data-text="hola maestra html">hola maestra html</h1>
-            <p class="subtitle">de josue bermudez botache</p>
-            <p class="sena">aprendiz sena</p>
-            <button id="start-btn">Abrir Folleto</button>
+        <section id="intro" class="section active">
+            <div class="glass-panel intro-panel">
+                <div class="miku-01">01</div>
+                <h1 class="glitch-text" data-text="HOLA MAESTRA HTML">HOLA MAESTRA HTML</h1>
+                <div class="divider"></div>
+                <p class="author">DE JOSUE BERMUDEZ BOTACHE</p>
+                <p class="role">APRENDIZ SENA</p>
+                <button id="start-btn" class="cyber-button">
+                    <span class="btn-content">INITIALIZE_BROCHURE</span>
+                    <span class="btn-glitch"></span>
+                </button>
+            </div>
         </section>
 
-        <!-- Page 1 -->
-        <section id="page-1" class="hidden">
-            <div class="image-container">
-                <img src="parte%201.png" alt="Folleto Parte 1">
-            </div>
-            <button class="next-btn" data-next="page-2">Siguiente</button>
-        </section>
-
-        <!-- Page 2 -->
-        <section id="page-2" class="hidden">
-            <div class="image-container">
-                <img src="parte%202.png" alt="Folleto Parte 2">
-            </div>
-            <button class="next-btn" data-next="page-3">Siguiente</button>
-        </section>
-
-        <!-- Page 3 -->
-        <section id="page-3" class="hidden">
-            <div class="image-container">
-                <img src="parte%203.png" alt="Folleto Parte 3">
-            </div>
-            <button class="next-btn" data-next="final">Finalizar</button>
-        </section>
+        <!-- Dynamic Page Container -->
+        <div id="page-display" class="hidden">
+            <section id="page-content" class="section">
+                <div class="brochure-frame">
+                    <div class="frame-decor tl"></div>
+                    <div class="frame-decor tr"></div>
+                    <div class="frame-decor bl"></div>
+                    <div class="frame-decor br"></div>
+                    
+                    <div class="image-wrapper">
+                        <img src="parte%201.png" alt="Folleto" id="brochure-img">
+                        <div class="img-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="nav-controls">
+                    <button id="prev-btn" class="nav-btn" disabled>PREV</button>
+                    <div class="progress-bar"><div id="progress-fill"></div></div>
+                    <button id="next-btn" class="nav-btn">NEXT</button>
+                </div>
+            </section>
+        </div>
 
         <!-- Final Section -->
-        <section id="final" class="hidden">
-            <h2 class="glitch" data-text="¡Gracias por ver!">¡Gracias por ver!</h2>
-            <p>Puedes descargar o ver el folleto completo aquí:</p>
-            <a href="Completo%20.pdf" target="_blank" class="pdf-btn">Abrir PDF Completo</a>
-            <button id="restart-btn">Volver al inicio</button>
+        <section id="final" class="section hidden">
+            <div class="glass-panel final-panel">
+                <h2 class="glitch-text" data-text="SENA_FILE_COMPLETED">SENA_FILE_COMPLETED</h2>
+                <div class="pdf-container">
+                    <div class="pdf-icon"></div>
+                    <p>Folleto completo disponible para descarga</p>
+                    <a href="Completo%20.pdf" target="_blank" class="cyber-button pdf-link">
+                        <span class="btn-content">OPEN_PDF_DATA</span>
+                    </a>
+                </div>
+                <button id="restart-btn" class="text-link">RESTART_SYSTEM</button>
+            </div>
         </section>
     </main>
 

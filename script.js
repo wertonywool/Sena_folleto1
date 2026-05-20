@@ -1,53 +1,121 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Elements ---
     const startBtn = document.getElementById('start-btn');
-    const nextBtns = document.querySelectorAll('.next-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
     const restartBtn = document.getElementById('restart-btn');
-    const sections = document.querySelectorAll('section');
-    const bg = document.getElementById('bg-animation');
+    
+    const introSection = document.getElementById('intro');
+    const pageDisplay = document.getElementById('page-display');
+    const finalSection = document.getElementById('final');
+    
+    const brochureImg = document.getElementById('brochure-img');
+    const pageNumDisplay = document.getElementById('current-page-num');
+    const progressFill = document.getElementById('progress-fill');
+    const cursorGlow = document.getElementById('cursor-glow');
+    const clockElement = document.getElementById('clock');
 
-    const showSection = (id) => {
-        // Find current active section to apply transition effects
-        const current = document.querySelector('section.active');
+    // --- State ---
+    let currentPage = 1;
+    const totalPages = 3;
+    const images = [
+        'parte%201.png',
+        'parte%202.png',
+        'parte%203.png'
+    ];
+
+    // --- Clock Logic ---
+    function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        clockElement.textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // --- Cursor Glow Effect ---
+    document.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // --- Navigation Logic ---
+    const updateUI = () => {
+        // Update Image with a "loading" effect
+        brochureImg.style.opacity = '0';
+        brochureImg.style.transform = 'scale(1.1) rotate(1deg)';
         
-        sections.forEach(s => {
-            s.classList.remove('active');
-            s.classList.add('hidden');
-        });
-
-        const target = document.getElementById(id);
-        target.classList.remove('hidden');
         setTimeout(() => {
-            target.classList.add('active');
-        }, 50);
+            brochureImg.src = images[currentPage - 1];
+            brochureImg.style.opacity = '1';
+            brochureImg.style.transform = 'scale(1) rotate(0deg)';
+        }, 300);
 
-        // Change background theme with smooth transition
-        bg.className = ''; // reset
-        if (id === 'page-1') bg.classList.add('bg-p1');
-        else if (id === 'page-2') bg.classList.add('bg-p2');
-        else if (id === 'page-3') bg.classList.add('bg-p3');
-        else if (id === 'final') bg.classList.add('bg-final');
+        // Update HUD & Progress
+        pageNumDisplay.textContent = String(currentPage).padStart(2, '0');
+        const progress = (currentPage / totalPages) * 100;
+        progressFill.style.width = `${progress}%`;
+
+        // Buttons
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.textContent = currentPage === totalPages ? 'FINALIZE' : 'NEXT';
     };
 
+    const navigate = (direction) => {
+        if (direction === 'next') {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updateUI();
+            } else {
+                showSection('final');
+            }
+        } else if (direction === 'prev') {
+            if (currentPage > 1) {
+                currentPage--;
+                updateUI();
+            }
+        }
+    };
+
+    const showSection = (targetId) => {
+        // Hide all
+        [introSection, pageDisplay, finalSection].forEach(s => {
+            s.classList.remove('active');
+            setTimeout(() => s.classList.add('hidden'), 500);
+        });
+
+        // Show target
+        const target = targetId === 'page-display' ? pageDisplay : document.getElementById(targetId);
+        setTimeout(() => {
+            target.classList.remove('hidden');
+            setTimeout(() => target.classList.add('active'), 50);
+        }, 600);
+    };
+
+    // --- Listeners ---
     startBtn.addEventListener('click', () => {
-        showSection('page-1');
+        showSection('page-display');
+        currentPage = 1;
+        updateUI();
     });
 
-    nextBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const nextId = btn.getAttribute('data-next');
-            showSection(nextId);
-        });
-    });
+    nextBtn.addEventListener('click', () => navigate('next'));
+    prevBtn.addEventListener('click', () => navigate('prev'));
 
     restartBtn.addEventListener('click', () => {
         showSection('intro');
     });
 
-    // Optional: Mouse movement effect on background
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        bg.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (pageDisplay.classList.contains('active')) {
+            if (e.key === 'ArrowRight') navigate('next');
+            if (e.key === 'ArrowLeft') navigate('prev');
+        }
     });
+
+    // Initial State
+    document.body.classList.remove('loading');
 });
