@@ -43,15 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Navigation Logic ---
     const updateUI = () => {
-        // Update Image with a "loading" effect
-        brochureImg.style.opacity = '0';
-        brochureImg.style.transform = 'scale(1.1) rotate(1deg)';
-        
-        setTimeout(() => {
-            brochureImg.src = images[currentPage - 1];
-            brochureImg.style.opacity = '1';
-            brochureImg.style.transform = 'scale(1) rotate(0deg)';
-        }, 300);
+        // Reset scroll to top of the brochure frame
+        const frame = document.querySelector('.brochure-frame');
+        if (frame) frame.scrollTop = 0;
+
+        // Update Image directly to avoid delays
+        brochureImg.src = images[currentPage - 1];
+        brochureImg.style.opacity = '1';
+        brochureImg.style.transform = 'scale(1)';
 
         // Update HUD & Progress
         pageNumDisplay.textContent = String(currentPage).padStart(2, '0');
