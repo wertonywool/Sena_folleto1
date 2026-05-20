@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 1;
     const totalPages = 3;
     const images = [
-        'parte%201.png',
-        'parte%202.png',
-        'parte%203.png'
+        'parte 1.png',
+        'parte 2.png',
+        'parte 3.png'
     ];
 
     // --- Clock Logic ---
