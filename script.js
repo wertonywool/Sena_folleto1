@@ -14,52 +14,108 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressFill = document.getElementById('progress-fill');
     const cursorGlow = document.getElementById('cursor-glow');
     const clockElement = document.getElementById('clock');
+    const vocaloidTypeDisplay = document.getElementById('vocaloid-type');
+    const particlesContainer = document.getElementById('particles');
 
     // --- State ---
     let currentPage = 1;
     const totalPages = 3;
     const images = [
-        'parte 1.png',
-        'parte 2.png',
-        'parte 3.png'
+        'page1.png',
+        'page2.png',
+        'page3.png'
     ];
 
-    // --- Clock Logic ---
-    function updateClock() {
+    const pageThemes = {
+        1: { theme: 'theme-miku', name: 'MIKU' },
+        2: { theme: 'theme-meiko', name: 'MEIKO' },
+        3: { theme: 'theme-rin', name: 'RIN' }
+    };
+
+    // --- Performance: Image Preloading ---
+    const preloadImages = () => {
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+    };
+    preloadImages();
+
+    // --- Clock System ---
+    const updateClock = () => {
         const now = new Date();
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-        clockElement.textContent = `${h}:${m}:${s}`;
-    }
+        const time = now.toTimeString().split(' ')[0];
+        if (clockElement) clockElement.textContent = time;
+    };
     setInterval(updateClock, 1000);
     updateClock();
 
-    // --- Cursor Glow Effect ---
+    // --- Cursor Glow System ---
     document.addEventListener('mousemove', (e) => {
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
+        if (cursorGlow) {
+            cursorGlow.style.left = `${e.clientX}px`;
+            cursorGlow.style.top = `${e.clientY}px`;
+        }
     });
+
+    // --- Particles System ---
+    const createParticles = () => {
+        if (!particlesContainer) return;
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1;
+            p.style.width = `${size}px`;
+            p.style.height = `${size}px`;
+            p.style.left = `${Math.random() * 100}%`;
+            p.style.top = `${Math.random() * 100}%`;
+            p.style.opacity = Math.random();
+            p.style.animation = `float ${Math.random() * 10 + 5}s linear infinite`;
+            particlesContainer.appendChild(p);
+        }
+    };
+    createParticles();
 
     // --- Navigation Logic ---
     const updateUI = () => {
-        // Reset scroll to top of the brochure frame
+        // Reset scroll to top
         const frame = document.querySelector('.brochure-frame');
-        if (frame) frame.scrollTop = 0;
+        if (frame) {
+            frame.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        // Update Image directly to avoid delays
-        brochureImg.src = images[currentPage - 1];
-        brochureImg.style.opacity = '1';
-        brochureImg.style.transform = 'scale(1)';
+        // Update Image directly with smooth fade
+        brochureImg.style.transition = 'opacity 0.3s ease';
+        brochureImg.style.opacity = '0';
+        
+        setTimeout(() => {
+            brochureImg.src = images[currentPage - 1];
+            brochureImg.onload = () => {
+                brochureImg.style.opacity = '1';
+            };
+        }, 300);
 
         // Update HUD & Progress
         pageNumDisplay.textContent = String(currentPage).padStart(2, '0');
         const progress = (currentPage / totalPages) * 100;
         progressFill.style.width = `${progress}%`;
 
+        // Update Theme
+        const currentTheme = pageThemes[currentPage];
+        if (currentTheme) {
+            // Remove previous themes
+            Object.values(pageThemes).forEach(t => document.body.classList.remove(t.theme));
+            // Add new theme
+            document.body.classList.add(currentTheme.theme);
+            // Update HUD text
+            if (vocaloidTypeDisplay) {
+                vocaloidTypeDisplay.textContent = `VOCALOID_TYPE: ${currentTheme.name}`;
+            }
+        }
+
         // Buttons
         prevBtn.disabled = currentPage === 1;
-        nextBtn.textContent = currentPage === totalPages ? 'FINALIZE' : 'NEXT';
+        nextBtn.textContent = currentPage === totalPages ? 'FINALIZAR' : 'SIGUIENTE';
     };
 
     const navigate = (direction) => {
@@ -82,15 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide all
         [introSection, pageDisplay, finalSection].forEach(s => {
             s.classList.remove('active');
-            setTimeout(() => s.classList.add('hidden'), 500);
+            s.classList.add('hidden');
         });
 
         // Show target
         const target = targetId === 'page-display' ? pageDisplay : document.getElementById(targetId);
+        target.classList.remove('hidden');
         setTimeout(() => {
-            target.classList.remove('hidden');
-            setTimeout(() => target.classList.add('active'), 50);
-        }, 600);
+            target.classList.add('active');
+        }, 50);
     };
 
     // --- Listeners ---
@@ -107,10 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         showSection('intro');
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (pageDisplay.classList.contains('active')) {
-            if (e.key === 'ArrowRight') navigate('next');
+            if (e.key === 'ArrowRight' || e.key === ' ') navigate('next');
             if (e.key === 'ArrowLeft') navigate('prev');
         }
     });
@@ -118,3 +173,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial State
     document.body.classList.remove('loading');
 });
+

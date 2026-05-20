@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="loading">
+<body class="loading theme-miku">
     <!-- Visual Background Layers -->
     <div class="cyber-bg">
         <div class="grid-3d"></div>
@@ -37,7 +37,7 @@
         <div class="hud-bottom">
             <div class="hud-line"></div>
             <div class="hud-tags">
-                <span>VOCALOID_TYPE: MIKU</span>
+                <span id="vocaloid-type">VOCALOID_TYPE: MIKU</span>
                 <span>STATUS: OPERATIONAL</span>
             </div>
         </div>
@@ -48,21 +48,28 @@
         <!-- Intro Section -->
         <section id="intro" class="section active">
             <div class="glass-panel intro-panel">
-                <div class="miku-01">SENA</div>
-                <h1 class="glitch-text" data-text="TRABAJO DE FOLLETO">TRABAJO DE FOLLETO</h1>
+                <div class="miku-01">PROYECTO SENA</div>
+                <h1 class="glitch-text" data-text="FOLLETO DIGITAL">FOLLETO DIGITAL</h1>
                 <div class="divider"></div>
-                <p class="author">POR: JOSUE BERMUDEZ BOTACHE</p>
-                <p class="role">HOLA MAESTRA - CLIC ABAJO PARA EMPEZAR</p>
+                <p class="author">ELABORADO POR: JOSUE BERMUDEZ BOTACHE</p>
+                
+                <div class="maestra-greeting">
+                    <p>BIENVENIDA, MAESTRA</p>
+                    <small>Este es el trabajo de folleto convertido en una experiencia interactiva.</small>
+                </div>
+
                 <button id="start-btn" class="cyber-button">
-                    <span class="btn-content">>>>> START <<<<</span>
+                    <span class="btn-content">>>>> INICIAR EXPERIENCIA <<<<</span>
                     <span class="btn-glitch"></span>
                 </button>
+                
+                <p class="nav-hint">Puedes navegar usando las flechas [←] [→] o la tecla [ESPACIO]</p>
             </div>
         </section>
 
         <!-- Dynamic Page Container -->
         <div id="page-display" class="hidden">
-            <section id="page-content" class="section">
+            <div class="page-container">
                 <div class="brochure-frame">
                     <div class="frame-decor tl"></div>
                     <div class="frame-decor tr"></div>
@@ -70,31 +77,50 @@
                     <div class="frame-decor br"></div>
 
                     <div class="image-wrapper">
-                        <img src="parte 1.png" alt="Folleto" id="brochure-img">
+                        <img src="page1.png" alt="Folleto" id="brochure-img">
                         <div class="img-overlay"></div>
                     </div>
                 </div>
                 
                 <div class="nav-controls">
-                    <button id="prev-btn" class="nav-btn" disabled>PREV</button>
+                    <button id="prev-btn" class="nav-btn" disabled>ANTERIOR</button>
                     <div class="progress-bar"><div id="progress-fill"></div></div>
-                    <button id="next-btn" class="nav-btn">NEXT</button>
+                    <button id="next-btn" class="nav-btn">SIGUIENTE</button>
                 </div>
-            </section>
+            </div>
         </div>
 
         <!-- Final Section -->
         <section id="final" class="section hidden">
             <div class="glass-panel final-panel">
-                <h2 class="glitch-text" data-text="SENA_FILE_COMPLETED">SENA_FILE_COMPLETED</h2>
-                <div class="pdf-container">
-                    <div class="pdf-icon"></div>
-                    <p>Folleto completo disponible para descarga</p>
-                    <a href="Completo%20.pdf" target="_blank" class="cyber-button pdf-link">
-                        <span class="btn-content">OPEN_PDF_DATA</span>
+                <div class="final-header">
+                    <h2 class="glitch-text" data-text="LECTURA FINALIZADA">LECTURA FINALIZADA</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="completion-message">
+                    <p>Has llegado al final del folleto interactivo.</p>
+                </div>
+
+                <div class="pdf-download-zone">
+                    <div class="pdf-info">
+                        <div class="pdf-icon"></div>
+                        <div class="pdf-details">
+                            <span class="file-name">DOCUMENTO_COMPLETO.PDF</span>
+                            <span class="file-desc">Versión original para impresión y archivo</span>
+                        </div>
+                    </div>
+                    
+                    <a href="completo.pdf" target="_blank" class="cyber-button pdf-link">
+                        <span class="btn-content">DESCARGAR FOLLETO</span>
+                        <span class="btn-glitch"></span>
                     </a>
                 </div>
-                <button id="restart-btn" class="text-link">RESTART_SYSTEM</button>
+
+                <div class="final-footer">
+                    <button id="restart-btn" class="text-link">VOLVER AL INICIO</button>
+                    <div class="system-id">USER_JOSUE // SENA_2026</div>
+                </div>
             </div>
         </section>
     </main>

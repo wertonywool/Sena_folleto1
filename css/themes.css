@@ -1,0 +1,373 @@
+/* --- CHARACTER THEMES --- */
+
+:root {
+    --primary: var(--cyan);
+    --secondary: var(--magenta);
+    --accent: var(--miku-teal);
+    --bg-glow: rgba(0, 255, 242, 0.1);
+}
+
+/* Apply variables to existing styles */
+.hud-line::after, .hud-stats, .hud-tags, h1.glitch-text, .cyber-button, .nav-btn:not(:disabled):hover, #progress-fill, .brochure-frame, .frame-decor {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+#progress-fill { background: var(--primary) !important; }
+.cyber-button:hover { background: var(--primary) !important; color: var(--miku-dark) !important; }
+.divider { background: var(--secondary) !important; }
+.hud-page-indicator { color: var(--secondary) !important; border-color: var(--secondary) !important; }
+
+/* Miku Theme (Default - Page 1) - SUPER COMPLETE */
+body.theme-miku {
+    --primary: #00fff2;
+    --secondary: #ff00ff;
+    --accent: #00cfc1;
+    --bg-glow: rgba(0, 255, 242, 0.2);
+    --glass: rgba(0, 255, 242, 0.05);
+    --glass-border: rgba(0, 255, 242, 0.4);
+}
+
+body.theme-miku .cyber-bg {
+    background: radial-gradient(circle at center, #002222 0%, #000 100%);
+}
+
+body.theme-miku .grid-3d {
+    background-image: 
+        linear-gradient(rgba(0, 255, 242, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 242, 0.3) 1px, transparent 1px);
+    animation: grid-move 15s linear infinite;
+    opacity: 0.5;
+}
+
+body.theme-miku #clock, 
+body.theme-miku .hud-stats, 
+body.theme-miku .hud-tags,
+body.theme-miku .hud-vert-text {
+    color: var(--primary) !important;
+    text-shadow: 0 0 10px rgba(0, 255, 242, 0.6);
+}
+
+body.theme-miku .hud-line::after {
+    background: var(--primary);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+body.theme-miku .hud-page-indicator {
+    color: var(--secondary) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 15px rgba(0, 255, 242, 0.3);
+}
+
+/* --- FINAL SECTION IMPROVEMENTS --- */
+.final-panel {
+    border: 2px solid var(--primary) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    width: 90%;
+    max-width: 550px;
+    padding: 50px 30px !important;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(var(--primary-rgb), 0.1);
+}
+
+.final-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.completion-message {
+    margin-bottom: 40px;
+    font-family: var(--font-tech);
+    color: var(--miku-white);
+    opacity: 0.8;
+}
+
+.pdf-download-zone {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.pdf-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.pdf-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name {
+    font-family: var(--font-tech);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.file-desc {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+.pdf-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/></svg>') no-repeat center;
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/></svg>') no-repeat center;
+}
+
+.pdf-link {
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.final-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.system-id {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    opacity: 0.4;
+}
+
+#restart-btn {
+    background: transparent;
+    border: none;
+    color: var(--secondary);
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: opacity 0.3s;
+}
+
+#restart-btn:hover {
+    opacity: 0.8;
+    text-shadow: 0 0 10px var(--secondary);
+}
+
+body.theme-meiko {
+    --primary: #ff0000;
+    --secondary: #ffd700;
+    --accent: #ff4500;
+    --bg-glow: rgba(255, 0, 0, 0.2);
+    --glass: rgba(255, 0, 0, 0.1);
+    --glass-border: rgba(255, 0, 0, 0.4);
+}
+
+body.theme-meiko .cyber-bg {
+    background: radial-gradient(circle at center, #300 0%, #000 100%);
+}
+
+body.theme-meiko .grid-3d {
+    background-image: 
+        linear-gradient(rgba(255, 0, 0, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.4) 1px, transparent 1px);
+    animation: grid-move 8s linear infinite;
+    opacity: 0.4;
+}
+
+body.theme-meiko .hud-line::after {
+    background: #ff0000;
+    box-shadow: 0 0 20px #ff0000, 0 0 40px #ff4500;
+}
+
+body.theme-meiko #clock, 
+body.theme-meiko .hud-stats, 
+body.theme-meiko .hud-tags,
+body.theme-meiko .hud-vert-text {
+    color: #ff4500 !important;
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+body.theme-meiko .hud-page-indicator {
+    color: #ffd700 !important;
+    border-color: #ff0000 !important;
+    box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+body.theme-meiko .progress-bar {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+body.theme-meiko #progress-fill {
+    background: linear-gradient(90deg, #8b0000, #ff0000) !important;
+    box-shadow: 0 0 15px #ff0000;
+}
+
+body.theme-meiko .brochure-frame {
+    border-color: #ff0000 !important;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+body.theme-meiko .frame-decor {
+    border-color: #ffd700 !important;
+}
+
+body.theme-meiko .maestra-greeting {
+    border-color: #ff0000 !important;
+    color: #ff0000 !important;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+body.theme-meiko .cyber-button {
+    border-color: #ff4500 !important;
+    color: #ff4500 !important;
+}
+
+body.theme-meiko .cyber-button:hover {
+    background: #ff4500 !important;
+    color: #fff !important;
+    box-shadow: 0 0 30px #ff4500;
+}
+
+/* Rin Theme (Yellow - Page 3) - SUPER COMPLETE */
+body.theme-rin {
+    --primary: #fff000;
+    --secondary: #ffffff;
+    --accent: #ff8c00;
+    --bg-glow: rgba(255, 240, 0, 0.2);
+    --glass: rgba(255, 240, 0, 0.05);
+    --glass-border: rgba(255, 240, 0, 0.4);
+}
+
+body.theme-rin .cyber-bg {
+    background: radial-gradient(circle at center, #220 0%, #000 100%);
+}
+
+body.theme-rin .grid-3d {
+    background-image: 
+        linear-gradient(rgba(255, 240, 0, 0.3) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 240, 0, 0.3) 2px, transparent 2px);
+    background-size: 35px 35px;
+    transform: perspective(300px) rotateX(75deg);
+    animation: grid-move 12s linear infinite;
+    opacity: 0.5;
+}
+
+body.theme-rin .hud-line::after {
+    background: #fff000;
+    box-shadow: 0 0 20px #fff000, 0 0 40px #ffffff;
+}
+
+body.theme-rin #clock, 
+body.theme-rin .hud-stats, 
+body.theme-rin .hud-tags,
+body.theme-rin .hud-vert-text {
+    color: #fff000 !important;
+    text-shadow: 0 0 10px rgba(255, 240, 0, 0.6);
+}
+
+body.theme-rin .hud-page-indicator {
+    color: #ffffff !important;
+    border-color: #fff000 !important;
+    box-shadow: 0 0 15px rgba(255, 240, 0, 0.4);
+}
+
+body.theme-rin .progress-bar {
+    background: rgba(255, 240, 0, 0.1);
+    border: 1px solid rgba(255, 240, 0, 0.2);
+}
+
+body.theme-rin #progress-fill {
+    background: linear-gradient(90deg, #ff8c00, #fff000) !important;
+    box-shadow: 0 0 15px #fff000;
+}
+
+body.theme-rin .brochure-frame {
+    border-color: #fff000 !important;
+    box-shadow: 0 0 30px rgba(255, 240, 0, 0.2);
+}
+
+body.theme-rin .frame-decor {
+    border-color: #ffffff !important;
+}
+
+body.theme-rin .cyber-button {
+    border-color: #fff000 !important;
+    color: #fff000 !important;
+}
+
+body.theme-rin .cyber-button:hover {
+    background: #fff000 !important;
+    color: #000 !important;
+    box-shadow: 0 0 30px #fff000;
+}
+
+/* Global Theme Transition */
+body {
+    transition: background-color 1s ease, color 1s ease;
+}
+
+body * {
+    transition: border-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease, background 0.8s ease;
+}
+
+
+/* --- MAESTRA SPECIAL STYLE --- */
+.maestra-greeting {
+    font-family: var(--font-tech);
+    color: var(--secondary) !important;
+    text-shadow: 0 0 10px var(--secondary);
+    font-size: 1.1rem;
+    margin: 30px auto; /* Increased margin for better spacing */
+    letter-spacing: 3px;
+    border: 1px dashed var(--secondary);
+    padding: 15px 30px;
+    display: block; /* Change to block for better layout control */
+    width: fit-content;
+    background: rgba(255, 0, 255, 0.05);
+    animation: pulse-kf 2s infinite;
+}
+
+.miku-01 {
+    color: var(--bg-glow) !important;
+}
+
+/* Glitch Text improvements */
+.glitch-text {
+    position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--secondary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--primary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch 5s infinite linear alternate-reverse;
+}

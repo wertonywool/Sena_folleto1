@@ -1,0 +1,47 @@
+:root {
+    --cyan: #00fff2;
+    --magenta: #ff00ff;
+    --miku-teal: #00cfc1;
+    --miku-dark: #050a0a;
+    --miku-white: #e0fcfb;
+    --glass: rgba(0, 207, 193, 0.08);
+    --glass-border: rgba(0, 207, 193, 0.3);
+    --font-main: 'Rajdhani', sans-serif;
+    --font-tech: 'Share Tech Mono', monospace;
+    --font-title: 'Orbitron', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair;
+}
+
+body {
+    background-color: var(--miku-dark);
+    color: var(--miku-white);
+    font-family: var(--font-main);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Scrollbar global styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}

@@ -1,0 +1,71 @@
+.cyber-button {
+    margin-top: 40px;
+    padding: 15px 45px;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.cyber-button:hover {
+    background: var(--primary);
+    color: var(--miku-dark);
+    box-shadow: 0 0 30px var(--primary);
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--miku-white);
+    padding: 10px 20px;
+    font-family: var(--font-tech);
+    transition: all 0.3s;
+    min-width: 80px;
+}
+
+.nav-btn:not(:disabled):hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+}
+
+.nav-hint {
+    margin-top: 20px;
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    color: var(--primary);
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
+
+.maestra-greeting small {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+#progress-fill {
+    position: absolute;
+    height: 100%;
+    background: var(--primary);
+    width: 33%;
+    box-shadow: 0 0 10px var(--primary);
+    transition: width 0.5s ease;
+}
